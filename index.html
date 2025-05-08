@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TANYSU.KZ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #fbeeff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-around;
+    }
+    .buttons button {
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .buttons button:hover {
+      transform: scale(1.1);
+    }
+    .like { background: #ffb6c1; }
+    .dislike { background: #dcdcdc; }
+  </style>
+</head>
+<body>
+  <div class="card" id="profileCard">
+    <img id="profileImg" src="" alt="Фото">
+    <h2 id="profileName"></h2>
+    <p id="profileBio"></p>
+    <div class="buttons">
+      <button class="dislike" onclick="nextProfile()">❌</button>
+      <button class="like" onclick="nextProfile()">❤️</button>
+    </div>
+  </div>
+
+  <script>
+    const profiles = [
+      {
+        name: "Майра, 28 жаста",
+        img: "https://i.imgur.com/j5cAgRB.jpg",
+        bio: "Коуя-психолог. Нумеролог. Сюцай 🌟"
+      },
+      
+      {
+        name: "Динара, 31 жаста",
+        img: "https://randomuser.me/api/portraits/women/88.jpg",
+        bio: "Travel-блогер. Ментор-наставник"
+      }
+    ];
+
+    let index = 0;
+
+    function showProfile(i) {
+      const p = profiles[i];
+      document.getElementById('profileImg').src = p.img;
+      document.getElementById('profileName').textContent = p.name;
+      document.getElementById('profileBio').textContent = p.bio;
+    }
+
+    function nextProfile() {
+      index = (index + 1) % profiles.length;
+      showProfile(index);
+    }
+
+    showProfile(index);
+  </script>
+</body>
+</html>
